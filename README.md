@@ -6,7 +6,7 @@ ASP.NET Core & Entity Framework Core solution for a layered **video sharing** we
 
 ## Important
 
-Authors: **Ferran Hendriks**, **Nick van Hoesel**
+**Authors:** Ferran Hendriks, Nick van Hoesel
 
 ---
 
@@ -32,9 +32,9 @@ Authors: **Ferran Hendriks**, **Nick van Hoesel**
 
 It demonstrates:
 
-- A layered architecture (web UI, business logic, data access, domain entities).
-- Integration with **SQL Server** via Entity Framework Core.
-- A clean solution structure suitable as a reference for similar projects.
+- A layered architecture (web UI, business logic, data access, domain entities)  
+- Integration with **SQL Server** via Entity Framework Core  
+- A clean solution structure suitable as a reference for similar projects  
 
 ---
 
@@ -42,45 +42,35 @@ It demonstrates:
 
 The repository is organized as follows:
 
-- `Source/`  
-  Main .NET solution and projects (including the `VideoSharing` web project).
+- `Source/` – main .NET solution and projects (including the `VideoSharing` web project)  
+- `Test/VideoSharing-tests/` – test project for automated tests  
+- `Docs/` – optional documentation and project-related notes  
+- `Pipelines/` – CI/CD pipeline configuration (e.g., for Azure DevOps)  
+- `src/` – additional source code (non-core to the ASP.NET project, currently including some Java code)  
 
-- `Test/VideoSharing-tests/`  
-  Test project for automated tests.
-
-- `Docs/`  
-  Optional documentation and project-related notes.
-
-- `Pipelines/`  
-  CI/CD pipeline configuration (e.g. for Azure DevOps).
-
-- `src/`  
-  Additional source code (non-core to the ASP.NET project, currently including some Java code).
-
-- Root configuration files:  
-  - `.gitignore`  
-  - `.gitattributes`  
-  - `README.md` (this file)
+Root configuration files:  
+- `.gitignore`  
+- `.gitattributes`  
+- `README.md` (this file)  
 
 ---
 
 ## Technologies
 
-- **ASP.NET Core**
-- **Entity Framework Core**
-- **.NET Core / .NET SDK**
-- **C#** (primary language)
-- **SQL Server**
+- **ASP.NET Core**  
+- **Entity Framework Core**  
+- **.NET Core / .NET SDK**  
+- **C#** (primary language)  
+- **SQL Server**  
 
 ---
 
 ## Prerequisites
 
-From the original readme:
-
-- **Visual Studio 2017 (or higher)**  
-- **.NET Core SDK**
-- **SQL Server**
+Originally noted:  
+- Visual Studio 2017 (or higher)  
+- .NET Core SDK  
+- SQL Server  
 
 In practice, a modern setup such as **Visual Studio 2019/2022** with a recent **.NET SDK** and a **SQL Server** instance (local or remote) will work fine.
 
@@ -91,124 +81,96 @@ In practice, a modern setup such as **Visual Studio 2019/2022** with a recent **
 ### Run with Visual Studio
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/ferrannl/VideoShare.git
    cd VideoShare
+   ```
 
-2. Open the solution
+2. **Open the solution**  
+   Open `Source/VideoSharing.sln` in Visual Studio  
 
-Open Source/VideoSharing.sln in Visual Studio.
+3. **Restore NuGet packages**  
+   Visual Studio usually restores packages automatically.  
+   If not, right-click the solution and choose **Restore NuGet Packages**  
 
+4. **Set startup project**  
+   Set the `VideoSharing.Web` project as the Startup Project  
 
-3. Restore NuGet packages
+5. **Configure database (if needed)**  
+   - Check the connection string in the web project configuration (e.g., `appsettings.json`)  
+   - Point it to your SQL Server instance  
+   - Ensure the database exists and migrations (if any) are applied  
 
-Visual Studio usually restores packages automatically.
-If not, right-click the solution and choose Restore NuGet Packages.
-
-
-4. Set startup project
-
-Set the VideoSharing web project (.Web) as the Startup Project.
-
-
-5. Configure database (if needed)
-
-Check the connection string in the web project configuration (e.g. appsettings.json).
-
-Point it to your SQL Server instance.
-
-Ensure the database exists and migrations (if any) are applied.
-
-
-
-6. Build and run
-
-Build the solution.
-
-Run the application (F5 / Ctrl+F5).
-
-Open the URL shown in the output (usually https://localhost:xxxx).
-
-
-
-
+6. **Build and run**  
+   - Build the solution  
+   - Run the application (**F5 / Ctrl+F5**)  
+   - Open the URL shown in the output (usually `https://localhost:xxxx`)  
 
 ---
 
-Run with .NET CLI
+### Run with .NET CLI
 
-If you prefer the command line:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ferrannl/VideoShare.git
+   cd VideoShare
+   ```
 
-1. Clone the repo
+2. **Restore and build**
+   ```bash
+   dotnet restore Source/VideoSharing.sln
+   dotnet build Source/VideoSharing.sln -c Release
+   ```
 
-git clone https://github.com/ferrannl/VideoShare.git
-cd VideoShare
+3. **Configure the database**  
+   Update the connection string in the `VideoSharing.Web` project configuration to point to your SQL Server  
 
-
-2. Restore and build
-
-dotnet restore Source/VideoSharing.sln
-dotnet build Source/VideoSharing.sln -c Release
-
-
-3. Configure the database
-
-Update the connection string in the VideoSharing web project configuration to point to your SQL Server.
-
-
-4. Run the web project
-
-cd Source/VideoSharing
-dotnet run
-
-
+4. **Run the web project**
+   ```bash
+   cd Source/VideoSharing
+   dotnet run
+   ```
 
 The app will start and listen on the configured ports (shown in the console output).
 
-
 ---
 
-Running Tests
+## Running Tests
 
-Automated tests live under Test/VideoSharing-tests/.
+Automated tests live under `Test/VideoSharing-tests/`.  
 
 From the repository root you can run:
-
+```bash
 dotnet test Source/VideoSharing.sln
+```
 
 This will:
-
-Build the solution (if needed).
-
-Run all tests in the VideoSharing-tests project.
-
-
+- Build the solution (if needed)  
+- Run all tests in the `VideoSharing-tests` project  
 
 ---
 
-Further Documentation
+## Further Documentation
 
-Look in the Docs/ directory for any additional project documentation, design notes, or diagrams related to VideoShare.
-
+See the `Docs/` directory for additional project documentation, design notes, or diagrams related to **VideoShare**.
 
 ---
 
-About
+## About
 
-This repository showcases an ASP.NET Core & Entity Framework Core application with a clean, layered architecture.
+This repository showcases an ASP.NET Core & Entity Framework Core application with a clean, layered architecture.  
 It can be used as:
 
-A reference implementation.
-
-A starting point for similar business applications.
-
-A learning resource for ASP.NET Core + EF Core projects.
-
-
+- A reference implementation  
+- A starting point for similar business applications  
+- A learning resource for ASP.NET Core + EF Core projects  
 
 ---
 
-Ownership & License
+## Ownership & License
 
-Authors: Ferran Hendriks, Nick van Hoesel
+**Authors:** Ferran Hendriks, Nick van Hoesel  
+
+No explicit license file is included.  
+Assume all rights reserved unless a license is added later.
+```
